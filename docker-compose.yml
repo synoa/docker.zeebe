@@ -3,7 +3,7 @@ version: '3'
 services:
 
   zeebe:
-    container_name: zeebe_broker
+    container_name: zeebe-broker
     image: synoa/zeebe:0.14.0
     ports:
       - "26500:26500"
@@ -12,13 +12,13 @@ services:
 
   db:
     image: oscarfonts/h2
-    container_name: zeebe_db
+    container_name: zeebe-db
     ports:
       - "1521:1521"
       - "81:81"
 
   monitor:
-    container_name: zeebe_monitor
+    container_name: zeebe-monitor
     image: camunda/zeebe-simple-monitor:0.10.0
     environment:
       - spring.datasource.url=jdbc:h2:tcp://db:1521/zeebe-monitor
