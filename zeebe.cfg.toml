@@ -150,7 +150,7 @@
 # since writes to different disks can potentially be done in parallel.
 #
 # This setting can also be overridden using the environment variable ZEEBE_DIRECTORIES.
-# directories = [ "data" ]
+directories = [ "/mnt/data" ]
 
 # The default size of data segments.
 # defaultSegmentSize = "512M"
