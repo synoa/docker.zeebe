@@ -282,21 +282,21 @@ directories = [ "/mnt/data" ]
 #
 # An example configuration for the elasticsearch exporter:
 #
-[[exporters]]
-id = "simple-monitor"
-className = "io.zeebe.monitor.SimpleMonitorExporter"
+#[[exporters]]
+#id = "simple-monitor"
+#className = "io.zeebe.monitor.SimpleMonitorExporter"
 
 [exporters.args]
-  jdbcUrl = "jdbc:h2:tcp://db:1521/zeebe-monitor"
+  #jdbcUrl = "jdbc:h2:tcp://db:1521/zeebe-monitor"
 
   # The driver name of the jdbc driver implementation. Make sure that the implementation is
   # available in the exporter/broker classpath (add it to the broker lib folder).
   # The name is used to load the driver implementation like this
   # Class.forName(configuration.driverName);
   # 
-  driverName = "org.h2.Driver"
-  userName = "sa"
-  password = ""
+  #driverName = "org.h2.Driver"
+  #userName = "sa"
+  #password = ""
 
   # To configure the amount of records, which has to be reached before the records are exported to
   # the database. Only counts the records which are in the end actually exported.
