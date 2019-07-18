@@ -271,45 +271,30 @@ directories = [ "/mnt/data" ]
 # A nested table as [exporters.args] will allow you to inject arbitrary arguments into your
 # class through the use of annotations.
 #
-# Enable the following exporter to get debug output of the exporter records
+# Enable the following debug exporter to log the exported records to console
+# This exporter can also be enabled using the environment variable ZEEBE_DEBUG, the pretty print
+# option will be enabled if the variable is set to "pretty".
 #
 # [[exporters]]
-# id = "debug"
-# className = "io.zeebe.broker.exporter.DebugExporter"
+# id = "debug-log"
+# className = "io.zeebe.broker.exporter.debug.DebugLogExporter"
 # [exporters.args]
 #   logLevel = "debug"
 #   prettyPrint = false
 #
+# Enable the following debug exporter to start a http server to inspect the exported records
+#
+# [[exporters]]
+# id = "debug-http"
+# className = "io.zeebe.broker.exporter.debug.DebugHttpExporter"
+# [exporters.args]
+#   port = 8000
+#   limit = 1024
+#
+#
 # An example configuration for the elasticsearch exporter:
 #
 #[[exporters]]
-#id = "simple-monitor"
-#className = "io.zeebe.monitor.SimpleMonitorExporter"
-
-[exporters.args]
-  #jdbcUrl = "jdbc:h2:tcp://db:1521/zeebe-monitor"
-
-  # The driver name of the jdbc driver implementation. Make sure that the implementation is
-  # available in the exporter/broker classpath (add it to the broker lib folder).
-  # The name is used to load the driver implementation like this
-  # Class.forName(configuration.driverName);
-  # 
-  #driverName = "org.h2.Driver"
-  #userName = "sa"
-  #password = ""
-
-  # To configure the amount of records, which has to be reached before the records are exported to
-  # the database. Only counts the records which are in the end actually exported.
-  #
-  # batchSize = 100;
-
-  # To configure the time in milliseconds, when the batch should be executed regardless whether the
-  # batch size was reached or not.
-  #
-  #If the value is less then one, then no timer will be scheduled.
-  #
-  #batchTimerMilli = 1000
-
 #id = "elasticsearch"
 #className = "io.zeebe.exporter.ElasticsearchExporter"
 #
@@ -320,6 +305,10 @@ directories = [ "/mnt/data" ]
 #  delay = 5
 #  size = 1_000
 #
+#  [exporters.args.authentication]
+#  username = elastic
+#  password = changeme
+#
 #  [exporters.args.index]
 #  prefix = "zeebe-record"
 #  createTemplate = true
@@ -329,10 +318,14 @@ directories = [ "/mnt/data" ]
 #  rejection = false
 #
 #  deployment = true
+#  error = true
 #  incident = true
 #  job = true
+#  jobBatch = false
 #  message = false
 #  messageSubscription = false
-#  raft = false
+#  variable = true
+#  variableDocument = false
 #  workflowInstance = true
+#  workflowInstanceCreation = false
 #  workflowInstanceSubscription = false
