@@ -261,6 +261,15 @@ logSegmentSize = "5M"
 # This exporter can also be enabled using the environment variable ZEEBE_DEBUG, the pretty print
 # option will be enabled if the variable is set to "pretty".
 #
+[[exporters]]
+id = "hazelcast"
+className = "io.zeebe.hazelcast.exporter.HazelcastExporter"
+
+  [exporters.args]
+  # comma separated list of io.zeebe.protocol.record.ValueType
+  enabledValueTypes = "JOB,WORKFLOW_INSTANCE,DEPLOYMENT,INCIDENT,TIMER,VARIABLE,MESSAGE,MESSAGE_SUBSCRIPTION,MESSAGE_START_EVENT_SUBSCRIPTION"
+
+
 # [[exporters]]
 # id = "debug-log"
 # className = "io.zeebe.broker.exporter.debug.DebugLogExporter"
